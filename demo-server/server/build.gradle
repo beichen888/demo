@@ -19,7 +19,7 @@ buildscript {
 
 apply plugin: 'io.spring.dependency-management'
 
-group = 'cn.com.alearning.yueryoudao'
+group = 'cn.com.demo.api'
 //version = '1.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
