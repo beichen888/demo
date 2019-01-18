@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <!-- 开发和测试环境 -->
+        <property name="log.path" value="log" />
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <property name="log.path" value="/var/log/demo" />
+    </springProfile>
+    <property name="log.maxHistory" value="10" />
+    <property name="log.pattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t] {%c:%L}-%m%n" />
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+             <level>ERROR</level>
+         </filter>-->
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/logback.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/logback.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 文件最大保存历史数量 -->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+    </root>
+
+    <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
+    <springProfile name="test,dev">
+        <logger name="cn.com.demo.api.controller" level="info" />
+        <logger name="cn.com.demo.api.service.impl" level="info" />
+        <logger name="cn.com.demo.api.mapper" level="debug" />
+    </springProfile>
+    <!-- 生产环境. -->
+    <springProfile name="prod">
+        <logger name="cn.com.demo.api.controller" level="info" />
+        <logger name="cn.com.demo.api.mapper" level="debug" />
+    </springProfile>
+</configuration>

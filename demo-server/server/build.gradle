@@ -1,0 +1,76 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'cn.com.alearning.yueryoudao'
+//version = '1.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':file')
+    //
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    // log
+    compile('org.springframework.boot:spring-boot-starter-logging')
+    //druid
+    compile('com.alibaba:druid-spring-boot-starter:1.1.9')
+    //MP
+    compile('com.baomidou:mybatis-plus-boot-starter:2.3')
+    // page helper
+    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5')
+    runtime('mysql:mysql-connector-java:5.1.47')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile(
+            // jwt
+            'com.auth0:java-jwt:3.3.0',
+            //swagger2
+            'io.springfox:springfox-swagger2:2.8.0',
+            'io.springfox:springfox-swagger-ui:2.8.0',
+            // velocity 生成代码用
+            "org.apache.velocity:velocity:1.7",
+            //处理微信昵称特殊字符
+            "com.vdurmont:emoji-java:4.0.0",
+    )
+}
+bootRun {
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+}
+
+task jar2(type: Copy, dependsOn:['bootJar']) {
+    println "copy jar from $buildDir\\libs to $projectDir/docker"
+    from "$buildDir/libs"
+    include "*.jar"
+    into "$projectDir/docker"
+
+}

@@ -1,0 +1,17 @@
+web:
+  name: demo
+role:
+  default:
+    normal: 基础用户
+upload:
+  folder: /var/data/demo/
+file:
+    audioFolder: audio/
+    coverFolder: cover/
+mail:
+  host: smtp.163.com
+  username:
+  password:
+mini:
+  appid: demo
+  secret: demo

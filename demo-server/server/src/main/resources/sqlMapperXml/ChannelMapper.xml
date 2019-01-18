@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.api.mapper.ChannelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.com.demo.api.entity.Channel">
+        <id column="id" property="id" />
+        <result column="category_id" property="categoryId" />
+        <result column="cover" property="cover" />
+        <result column="title" property="title" />
+        <result column="introduction" property="introduction" />
+        <result column="reader" property="reader" />
+        <result column="reader_avatar" property="readerAvatar" />
+        <result column="reader_introduction" property="readerIntroduction" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, category_id, cover, title, introduction, reader, reader_avatar, reader_introduction, create_date, update_date
+    </sql>
+
+</mapper>

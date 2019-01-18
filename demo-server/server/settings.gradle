@@ -1,0 +1,7 @@
+include 'common'
+include 'file'
+include 'server'
+
+project(':common').projectDir = new File('../../common')
+project(':file').projectDir = new File('../../file')
+rootProject.name = 'demo-server'

@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+classes
+build
+frontend/node_modules
+.gradle.gradle
+vishow/frontend/js
+.DS_Store
+.gradle
+frontend/dashboard.html
+frontend/index.html
+frontend/admin.html
+frontend/dist
+frontend/js
+npm-debug.log
+server/src/main/webapp/WEB-INF/lib

@@ -1,0 +1,12 @@
+#app
+server:
+    port: 8080
+
+spring:
+  # database config
+  datasource:
+    url: jdbc:mysql://192.168.1.1:3306/demo?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: 123456
+web:
+  domain: http://192.168.1.1:9100/

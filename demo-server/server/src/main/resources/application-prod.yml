@@ -1,0 +1,12 @@
+#app
+server:
+    port: 8080
+
+spring:
+  # database config
+  datasource:
+    url: jdbc:mysql://demo.mysql.rds.aliyuncs.com:3306/demo?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: demo
+    password: demo
+web:
+  domain: https://api.demo.com.cn/

@@ -1,0 +1,12 @@
+server:
+  tomcat:
+    min-spare-threads: 20
+    #设定tomcat的最大工作线程数，默认为: 0
+    max-threads: 500
+    max-connections: 2000
+    #设定URI的解码字符集
+    uri-encoding: utf-8
+    # tomcat日志
+    accesslog:
+      enabled: true
+      directory: log/tomcat

@@ -1,0 +1,67 @@
+version = 1.0
+apply plugin: 'java'
+apply from: "../dependencyDefinitions.gradle"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+//    provided (
+//        libraries.'servlet-api',
+//        libraries.'jsp-api',
+//        libraries.'jstl'
+//    )
+
+    compile (
+        libraries.jwt,
+        libraries.'servlet-api',
+        libraries.'jsp-api',
+        libraries.'jstl',
+        libraries.'spring-context-support',
+        libraries.'spring-web',
+        libraries.'spring-webmvc',
+        libraries.'spring-jdbc',
+        libraries.'mail',
+        libraries.'commons-lang3',
+        libraries.'commons-codec',
+        libraries.'shiro-core',
+        libraries.'shiro-ehcache',
+        libraries.'shiro-spring',
+        libraries.'shiro-web',
+        libraries.'httpcore',
+        libraries.'httpclient',
+        libraries.'httpmime',
+        libraries.'poi',
+        libraries.'poi-ooxml-schemas',
+        libraries.'poi-ooxml',
+        libraries.'jackson-core',
+        libraries.'jackson-annotations',
+        libraries.'jackson-databind',
+        libraries.'zxing',
+        libraries.'jedis',
+        libraries.'hibernate-validator',
+        libraries.'mybatis',
+        libraries.'hessian',
+        libraries.'zookeeper'
+    )
+}
+
+allprojects{
+    configurations {
+        provided
+    }
+    sourceSets {
+        main.compileClasspath += configurations.provided
+        test.compileClasspath += configurations.provided
+        test.runtimeClasspath += configurations.provided
+    }
+
+//    idea {
+//        module {
+//            scopes.PROVIDED.plus += [configurations.provided]
+//        }
+//    }
+    repositories {
+        jcenter()
+    }
+}

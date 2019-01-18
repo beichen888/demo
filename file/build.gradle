@@ -1,0 +1,53 @@
+version = '1.0'
+apply plugin: 'java'
+apply from: "../dependencyDefinitions.gradle"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+//    provided (
+//            libraries.'servlet-api',
+//    )
+
+    compile project(':common')
+
+    compile (
+            libraries.'mail',
+            libraries.'commons-lang3',
+            libraries.'commons-fileupload',
+            libraries.'hibernate-validator',
+            libraries.'httpcore',
+            libraries.'httpclient',
+            libraries.'httpmime',
+            libraries.'poi',
+            libraries.'poi-ooxml-schemas',
+            libraries.'poi-ooxml',
+            libraries.'zxing',
+            libraries.'jedis',
+            libraries.'qiniu',
+            libraries.'zip4j'
+    )
+    // aliyun oss
+    compile('com.aliyun.oss:aliyun-sdk-oss:2.8.3')
+}
+
+allprojects{
+    configurations {
+        provided
+    }
+    sourceSets {
+        main.compileClasspath += configurations.provided
+        test.compileClasspath += configurations.provided
+        test.runtimeClasspath += configurations.provided
+    }
+
+//    idea {
+//        module {
+//            scopes.PROVIDED.plus += [configurations.provided]
+//        }
+//    }
+    repositories {
+        jcenter()
+    }
+}
